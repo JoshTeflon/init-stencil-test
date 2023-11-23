@@ -1,0 +1,20 @@
+.dot-component {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: fit-content;
+}
+
+.dot-child {
+  border-radius: 100%;
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+.dot-dark {
+  background: var(--color-black);
+}
+
+.dot-feint {
+  background: var(--color-feint);
+}

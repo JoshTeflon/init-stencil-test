@@ -1,0 +1,13 @@
+:root {
+  --color-primary: #1c5691;
+  --color-secondary: #6cbd45;
+  --color-tertiary: #1b3c77;
+  --color-black: #000000;
+  --color-feint: #d9d9d9;
+}
+
+.render-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

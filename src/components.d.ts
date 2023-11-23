@@ -8,6 +8,11 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface ClockComponent {
     }
+    interface DotComponent {
+        "customClass"?: string;
+        "size"?: 'default' | 'sm';
+        "variant"?: 'feint' | 'dark';
+    }
     interface MyComponent {
         /**
           * The first name
@@ -30,6 +35,12 @@ declare global {
         prototype: HTMLClockComponentElement;
         new (): HTMLClockComponentElement;
     };
+    interface HTMLDotComponentElement extends Components.DotComponent, HTMLStencilElement {
+    }
+    var HTMLDotComponentElement: {
+        prototype: HTMLDotComponentElement;
+        new (): HTMLDotComponentElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -38,11 +49,17 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "clock-component": HTMLClockComponentElement;
+        "dot-component": HTMLDotComponentElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
     interface ClockComponent {
+    }
+    interface DotComponent {
+        "customClass"?: string;
+        "size"?: 'default' | 'sm';
+        "variant"?: 'feint' | 'dark';
     }
     interface MyComponent {
         /**
@@ -60,6 +77,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "clock-component": ClockComponent;
+        "dot-component": DotComponent;
         "my-component": MyComponent;
     }
 }
@@ -68,6 +86,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "clock-component": LocalJSX.ClockComponent & JSXBase.HTMLAttributes<HTMLClockComponentElement>;
+            "dot-component": LocalJSX.DotComponent & JSXBase.HTMLAttributes<HTMLDotComponentElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

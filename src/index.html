@@ -3,13 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <link rel="stylesheet" href="/build/init-stencil-test.css" />
     <title>Stencil Component Starter</title>
 
     <script type="module" src="/build/init-stencil-test.esm.js"></script>
     <script nomodule src="/build/init-stencil-test.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-    <!-- <clock-component></clock-component> -->
+    <div class="render-wrapper">
+      <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+      <clock-component></clock-component>
+      <dot-component></dot-component>
+      <dot-component variant="dark"></dot-component>
+    </div>
   </body>
 </html>
