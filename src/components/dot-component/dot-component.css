@@ -3,12 +3,11 @@
   align-items: center;
   gap: 0.25rem;
   width: fit-content;
+  cursor: pointer;
 }
 
 .dot-child {
   border-radius: 100%;
-  width: 0.375rem;
-  height: 0.375rem;
 }
 
 .dot-dark {
@@ -17,4 +16,18 @@
 
 .dot-feint {
   background: var(--color-feint);
+}
+
+.dot-default {
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+.dot-sm {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.dot-vertical {
+  flex-direction: column;
 }

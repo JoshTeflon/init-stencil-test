@@ -7,22 +7,24 @@ import { Component, Prop, h } from '@stencil/core';
 })
 
 export class DotComponent {
-  @Prop() size?: 'default' | 'sm'
-  @Prop() variant?: 'feint' | 'dark' = 'feint'
-  // @Prop() orientation?: 'horizontal' | 'vertical'
+  @Prop() size: 'default' | 'sm' = 'default'
+  @Prop() variant: 'feint' | 'dark' = 'feint'
+  @Prop() orientation: 'horizontal' | 'vertical' = 'horizontal'
   @Prop() customClass?: string
-  // @Prop() onClick?: () => void
+  @Prop() clickFunction?: () => void
 
   render() {
     return (
       <div
-        class='dot-component'
-        // onClick={this.onClick}
+        class={`dot-component ${this.orientation === 'vertical' ? `dot-${this.orientation}` : ''}`}
+        onClick={this.clickFunction}
       >
         {
           [...Array(3)].map((_) => {
             return (
-              <span class={`dot-child dot-${this.variant}`}></span>
+              <span
+                class={`dot-child ${this.customClass} dot-${this.size} dot-${this.variant}`}
+              ></span>
             )
           })
         }

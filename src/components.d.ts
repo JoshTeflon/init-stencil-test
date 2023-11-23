@@ -9,9 +9,11 @@ export namespace Components {
     interface ClockComponent {
     }
     interface DotComponent {
+        "clickFunction"?: () => void;
         "customClass"?: string;
-        "size"?: 'default' | 'sm';
-        "variant"?: 'feint' | 'dark';
+        "orientation": 'horizontal' | 'vertical';
+        "size": 'default' | 'sm';
+        "variant": 'feint' | 'dark';
     }
     interface MyComponent {
         /**
@@ -57,7 +59,9 @@ declare namespace LocalJSX {
     interface ClockComponent {
     }
     interface DotComponent {
+        "clickFunction"?: () => void;
         "customClass"?: string;
+        "orientation"?: 'horizontal' | 'vertical';
         "size"?: 'default' | 'sm';
         "variant"?: 'feint' | 'dark';
     }
