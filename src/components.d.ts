@@ -6,10 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface ClockComponent {
-    }
     interface DotComponent {
-        "clickFunction"?: () => void;
         "customClass"?: string;
         "orientation": 'horizontal' | 'vertical';
         "size": 'default' | 'sm';
@@ -30,14 +27,23 @@ export namespace Components {
         "middle": string;
     }
 }
+export interface DotComponentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDotComponentElement;
+}
 declare global {
-    interface HTMLClockComponentElement extends Components.ClockComponent, HTMLStencilElement {
+    interface HTMLDotComponentElementEventMap {
+        "dotsClick": void;
     }
-    var HTMLClockComponentElement: {
-        prototype: HTMLClockComponentElement;
-        new (): HTMLClockComponentElement;
-    };
     interface HTMLDotComponentElement extends Components.DotComponent, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDotComponentElementEventMap>(type: K, listener: (this: HTMLDotComponentElement, ev: DotComponentCustomEvent<HTMLDotComponentElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDotComponentElementEventMap>(type: K, listener: (this: HTMLDotComponentElement, ev: DotComponentCustomEvent<HTMLDotComponentElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDotComponentElement: {
         prototype: HTMLDotComponentElement;
@@ -50,17 +56,14 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "clock-component": HTMLClockComponentElement;
         "dot-component": HTMLDotComponentElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface ClockComponent {
-    }
     interface DotComponent {
-        "clickFunction"?: () => void;
         "customClass"?: string;
+        "onDotsClick"?: (event: DotComponentCustomEvent<void>) => void;
         "orientation"?: 'horizontal' | 'vertical';
         "size"?: 'default' | 'sm';
         "variant"?: 'feint' | 'dark';
@@ -80,7 +83,6 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
-        "clock-component": ClockComponent;
         "dot-component": DotComponent;
         "my-component": MyComponent;
     }
@@ -89,7 +91,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "clock-component": LocalJSX.ClockComponent & JSXBase.HTMLAttributes<HTMLClockComponentElement>;
             "dot-component": LocalJSX.DotComponent & JSXBase.HTMLAttributes<HTMLDotComponentElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }

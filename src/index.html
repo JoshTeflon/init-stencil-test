@@ -12,9 +12,13 @@
   <body>
     <div class="render-wrapper">
       <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-      <clock-component></clock-component>
       <dot-component></dot-component>
       <dot-component size='sm' variant="dark" orientation="vertical"></dot-component>
     </div>
   </body>
 </html>
+
+<script>
+  const dotElement = document.querySelector('dot-component');
+  dotElement.addEventListener('dotsClick', event => { console.log('clicked!') })
+</script>

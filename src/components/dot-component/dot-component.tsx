@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, Event, EventEmitter, h } from '@stencil/core';
 
 @Component({
   tag: 'dot-component',
@@ -11,19 +11,19 @@ export class DotComponent {
   @Prop() variant: 'feint' | 'dark' = 'feint'
   @Prop() orientation: 'horizontal' | 'vertical' = 'horizontal'
   @Prop() customClass?: string
-  @Prop() clickFunction?: () => void
+  @Event() dotsClick: EventEmitter<void>;
 
   render() {
     return (
       <div
         class={`dot-component ${this.orientation === 'vertical' ? `dot-${this.orientation}` : ''}`}
-        onClick={this.clickFunction}
+        onClick={() => this.dotsClick.emit()}
       >
         {
           [...Array(3)].map((_) => {
             return (
               <span
-                class={`dot-child ${this.customClass} dot-${this.size} dot-${this.variant}`}
+                class={`dot-child ${this.customClass ? this.customClass : ''} dot-${this.size} dot-${this.variant}`}
               ></span>
             )
           })
